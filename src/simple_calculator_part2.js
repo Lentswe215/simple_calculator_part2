@@ -1,60 +1,56 @@
-"use strict" 
-let fs = require("fs")
+"use strict"
 
 class Calculator {
-    constructor() {
-        let LAST = fs.readFile("simple_calculator_results.txt", function (err, data) {})
+    constructor(){
+        this.resultArray = []
+        this.memory_slot = []
+        
     }
+     
     add() {
         let sum = 0;
-
-        for (var i = 0; i < arguments.length; i++) {
-            sum += arguments[i];
+        for(let i = 0; i < arguments.length; i++){
+            if(arguments[i] == "LAST") {
+                sum += this.last()
+            } else if (typeof arguments[i] == "string" && arguments[i].includes("SLOT_")){
+                let slotNumber = arguments[i].match(/\d+/g)
+                Number(slotNumber)
+                sum += this.get_slot(slotNumber)
+            } else
+            sum += arguments[i]
         }
-        fs.writeFile("simple_calculator_results.txt", sum, function (err) {
-
-            if (err) {
-                throw err;
-            }
-        })
-        return sum;
+        this.resultArray.push(sum)
+        return sum 
     }
-
     multiply() {
         let product = 1;
-
-        for (var i = 0; i < arguments.length; i++) {
-            product *= arguments[i];
-        }
-        fs.writeFile("simple_calculator_results.txt", product, function (err) {
-            if (err) {
-                throw e
-            }
-        })
-        return product;
+        for( let i = 0; i < arguments.length; i++){
+            if(arguments[i] == "LAST") {
+                product *= this.last()
+            }  else if(typeof arguments[i] === "string" && arguments[i].includes("SLOT_")){
+                let slotNumber = arguments[i].match(/\d+/g)
+                Number(slotNumber)
+                product *= this.get_slot(slotNumber)
+            } else
+            product *= arguments[i]
+        } 
+        this.resultArray.push(product)
+        return product
+    }
+    last() {
+        return this.resultArray[this.resultArray.length - 1]
+    }   
+    
+    set_slot(slotNumber) {
+      this.memory_slot.splice(slotNumber - 1, 0,this.resultArray[slotNumber - 1])
     }
 
-    last() {
-        fs.readFile("simple_calculator_results.txt", function (err, data) {
-            
-            
-            try {
-                if(err){
-                    throw err;
-                }
-                data = JSON.parse(data)
-            } catch(err) {
-                throw err
-            }
-            console.log(data)
-        })
+    get_slot(slotNumber) {
+        return this.memory_slot[slotNumber - 1]
     }
 }
+let calc = new Calculator()
 
+console.log(calc.add("SLOT_1",2))
 
-let calculator1 = new Calculator()
-let calculator2 = new Calculator()
-
-console.log(calculator1.add(16,0,8))
-
-calculator2.last()
+// module.exports = Calculator;
