@@ -12,7 +12,7 @@ class Calculator {
         for(let i = 0; i < arguments.length; i++){
             if(arguments[i] == "LAST") {
                 sum += this.last()
-            } else if (typeof arguments[i] == "string" && arguments[i].includes("SLOT_")){
+            } else if (typeof arguments[i] === "string" && arguments[i].includes("SLOT_")){
                 let slotNumber = arguments[i].match(/\d+/g)
                 Number(slotNumber)
                 sum += this.get_slot(slotNumber)
@@ -49,8 +49,6 @@ class Calculator {
         return this.memory_slot[slotNumber - 1]
     }
 }
-let calc = new Calculator()
 
-console.log(calc.add("SLOT_1",2))
 
-// module.exports = Calculator;
+module.exports = Calculator;
