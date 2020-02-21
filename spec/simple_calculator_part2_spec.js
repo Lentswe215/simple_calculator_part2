@@ -98,10 +98,48 @@ describe("Calculator", ()=> {
             expect(calculator1.get_slot(2)).toBe(30)
         })
 
-        it("should return result with SLOT_1 as parameter", () => {
+        it("should return get_slot(2) number", () => {
+
             calculator1.add(1,2)
             calculator1.set_slot(1)
+            calculator1.add(10, 20)
+            calculator1.set_slot(2)
+            calculator1.add(100, 200)
+            
 
-            expect(calculator1.add("SLOT_1", 4)).toBe(7)
+            expect(calculator1.last()).toBe(300)
+        })
+
+        it("should return 310", () => {
+            calculator1.add(1,2)
+            calculator1.set_slot(1)
+            calculator1.add(10, 20)
+            calculator1.set_slot(2)
+            calculator1.add(100, 200)
+            
+
+            expect(calculator1.add("LAST", 10)).toBe(310)
+        })
+
+        it("should return 8", () => {
+            calculator1.add(1,2)
+            calculator1.set_slot(1)
+            calculator1.add(10, 20)
+            calculator1.set_slot(2)
+            calculator1.add(100, 200)
+            
+
+            expect(calculator1.add("SLOT_1",5)).toBe(8)
+        })
+
+        it("should return 60", () => {
+            calculator1.add(1,2)
+            calculator1.set_slot(1)
+            calculator1.add(10, 20)
+            calculator1.set_slot(2)
+            calculator1.add(100, 200)
+            
+
+            expect(calculator1.multiply("SLOT_2",2)).toBe(60)
         })
     })
