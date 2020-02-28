@@ -1,0 +1,13 @@
+{
+    "sqltools.connections": [
+        {
+            "database": "Umuzi",
+            "dialect": "MySQL",
+            "name": "myConnection",
+            "password": "12345",
+            "port": 3306,
+            "server": "localhost",
+            "username": "umuziDatabase"
+        }
+    ]
+}

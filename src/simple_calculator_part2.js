@@ -1,4 +1,5 @@
-"use strict";
+"use strict"
+
 class Calculator {
   constructor() {
     this.resultArray = [];
@@ -38,10 +39,14 @@ class Calculator {
     return this.resultArray[this.resultArray.length - 1];
   }
   set_slot(numSlot) {
-   this.memory_slot.push(this.resultArray[numSlot - 1])
+    if(this.resultArray[numSlot - 1] == null){
+      throw "No Results"
+    }
+   this.memory_slot.splice(numSlot - 1, 0 ,this.resultArray[numSlot - 1])
   }
   get_slot(numSlot) {
    return this.memory_slot[numSlot - 1]
   }
 }
+
 module.exports = Calculator;
