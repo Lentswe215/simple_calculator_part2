@@ -1,47 +1,47 @@
 let Calculator = require("../src/simple_calculator_part2")
-let calculator1 = new Calculator()
+let calculator_instance = new Calculator()
 
 describe("add", ()=> {
 
     it("should test if add() have been called", ()=> {
-        spyOn(calculator1, "add")
-        calculator1.add()
-        expect(calculator1.add).toHaveBeenCalled()
+        spyOn(calculator_instance, "add")
+        calculator_instance.add()
+        expect(calculator_instance.add).toHaveBeenCalled()
     })
 
     it("should test if add() have been called", ()=> {
-        spyOn(calculator1, "add")
-        calculator1.add(1,2)
-        expect(calculator1.add).toHaveBeenCalledWith(1,2)
+        spyOn(calculator_instance, "add")
+        calculator_instance.add(1,2)
+        expect(calculator_instance.add).toHaveBeenCalledWith(1,2)
     })
 
     it("should return 3", ()=>{
 
-        expect(calculator1.add(1,2)).toBe(3)
+        expect(calculator_instance.add(1,2)).toBe(3)
     })
 
 })
 
 describe("multiply", ()=> {
     it("should test if multiply() have been called", ()=> {
-        spyOn(calculator1, "multiply")
-        calculator1.multiply()
-        expect(calculator1.multiply).toHaveBeenCalled()
+        spyOn(calculator_instance, "multiply")
+        calculator_instance.multiply()
+        expect(calculator_instance.multiply).toHaveBeenCalled()
     })
 
     it("should test if multiply() have been called", ()=> {
-        spyOn(calculator1, "multiply")
-        calculator1.multiply(1,2)
-        expect(calculator1.multiply).toHaveBeenCalledWith(1, 2)
+        spyOn(calculator_instance, "multiply")
+        calculator_instance.multiply(1,2)
+        expect(calculator_instance.multiply).toHaveBeenCalledWith(1, 2)
     })
 })
 
 describe("last", ()=> {
     it("should return result with 'LAST' as parameter", () => {
-        calculator1.add(1,2)
-        calculator1.last()
+        calculator_instance.add(1,2)
+        calculator_instance.last()
 
-        expect(calculator1.multiply("LAST", 5)).toBe(15)
+        expect(calculator_instance.multiply("LAST", 5)).toBe(15)
         })
 
         
@@ -49,10 +49,10 @@ describe("last", ()=> {
     
     describe("set_slot", () => {
         it("should check if set_slot is called", () => {
-            spyOn(calculator1, "set_slot")
-            calculator1.set_slot(1)
+            spyOn(calculator_instance, "set_slot")
+            calculator_instance.set_slot(1)
 
-            expect(calculator1.set_slot).toHaveBeenCalledWith(1)
+            expect(calculator_instance.set_slot).toHaveBeenCalledWith(1)
         })
     })
 
@@ -74,7 +74,6 @@ describe("last", ()=> {
             calculator2.set_slot(1)
             calculator2.add(10, 20)
             calculator2.set_slot(2)
-            console.log(calculator2.resultArray)
 
             expect(calculator2.get_slot(2)).toBe(30)
         })
@@ -105,9 +104,9 @@ describe("last", ()=> {
       
 
         it("should return result with SLOT_1 as parameter", () => {
-            calculator1.add(1,2)
-            calculator1.set_slot(1)
+            calculator_instance.add(1,2)
+            calculator_instance.set_slot(1)
 
-            expect(calculator1.add("SLOT_1", 4)).toBe(7)
+            expect(calculator_instance.add("SLOT_1", 4)).toBe(7)
         })
   
